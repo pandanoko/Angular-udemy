@@ -1,5 +1,5 @@
 //import { ViewEncapsulation } from '@angular/compiler';
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -7,6 +7,12 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   styleUrl: './server-element.component.css',
   encapsulation: ViewEncapsulation.ShadowDom
 })
-export class ServerElementComponent {
-  @Input('srvElement') element: { type: string; name: string; content: string }
+export class ServerElementComponent implements OnInit {
+  @Input('srvElement') element: { type: string; name: string; content: string };
+
+  constructor() {}
+
+  ngOnInit(): void {
+      
+  }
 }

@@ -11,7 +11,7 @@ export class AppComponent {
     { type: 'blueprint', name: 'TestServer', content: 'Just a test' },
   ];
 
-  onServerAddded(serverData: {serverName: string, serverContent: string}) {
+  onServerAdded(serverData: {serverName: string, serverContent: string}) {
     this.serverElements.push({
       type: 'server',
       name: serverData.serverName,
@@ -19,11 +19,11 @@ export class AppComponent {
     });
   }
 
-  onBlueprintAdded(blueprintData: {blueprintName: string, blueprintContent: string}) {
+  onBlueprintAdded(blueprintData: {serverName: string, serverContent: string}) {
     this.serverElements.push({
       type: 'blueprint',
-      name: blueprintData.blueprintName,
-      content: blueprintData.blueprintContent,
+      name: blueprintData.serverName,
+      content: blueprintData.serverContent,
     });
   }
   
