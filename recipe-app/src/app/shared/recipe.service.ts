@@ -1,23 +1,43 @@
-import { EventEmitter } from "@angular/core";
-import { Recipe } from "../recipe-book/recipe.model";
+import { EventEmitter, Injectable } from '@angular/core';
+import { Recipe } from '../recipe-book/recipe.model';
+import { Ingredient } from './ingredient.model';
+import { ShoppingListService } from './shopping-list.service';
 
-export class RecipeService  {
-    recipeSelected = new EventEmitter<Recipe>();
+@Injectable()
+export class RecipeService {
+  recipeSelected = new EventEmitter<Recipe>();
 
-    private recipes: Recipe[] = [
-        new Recipe(
-          'Test Recipe2',
-          'Test description',
-          'https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-        ),
-        new Recipe(
-          'Test Recipe',
-          'Test description',
-          'https://images.unsplash.com/photo-1466637574441-749b8f19452f?q=80&w=580&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-        ),
-      ];
+  private recipes: Recipe[] = [
+    new Recipe(
+      'Cinnamon rolls',
+      'Try these tasty cinnamon rolls',
+      'https://images.unsplash.com/photo-1585190775852-3e6bb2b80184?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      [
+        new Ingredient('Flour', 500),
+        new Ingredient('Sugar', 300),
+        new Ingredient('Butter', 200),
+        new Ingredient('Cinnamon', 1)
+      ]
+    ),
+    new Recipe(
+      'Falafel bowl',
+      'Delicious and healthy',
+      'https://images.unsplash.com/photo-1547058881-aa0edd92aab3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      [
+        new Ingredient('Chickpeas', 500),
+        new Ingredient('Garlic', 1),
+        new Ingredient('Onion', 1)
+      ]
+    ),
+  ];
 
-      getRecipes() {
-        return this.recipes.slice();
-      }
+  constructor(private shoppingListService: ShoppingListService) {}
+
+  getRecipes() {
+    return this.recipes.slice();
+  }
+
+  addIngredientsToList(ingredients: Ingredient[]) {
+    this.shoppingListService.addIngredients(ingredients);
+  }
 }
