@@ -1,9 +1,6 @@
 import {
   Component,
-  ElementRef,
-  EventEmitter,
   ViewChild,
-  Output,
   OnInit,
   OnDestroy,
 } from '@angular/core';
@@ -19,9 +16,6 @@ import { NgForm } from '@angular/forms';
   styleUrl: './shopping-list-edit.component.css',
 })
 export class ShoppingListEditComponent implements OnInit, OnDestroy {
-  //@ViewChild('nameInput', { static: false }) nameInputRef: ElementRef;
-  //@ViewChild('amountInput', { static: false }) amountInputRef: ElementRef;
-  //@Output() ingredientAdded = new EventEmitter<Ingredient>();
   @ViewChild('f') slForm: NgForm;
   subscription: Subscription;
   editMode = false;
@@ -47,8 +41,6 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
   }
 
   onAddItem(form: NgForm) {
-    //const ingName = this.nameInputRef.nativeElement.value;
-    //const ingAmount = this.amountInputRef.nativeElement.value;
     const value = form.value;
     const newIngredient = new Ingredient(value.name, value.amount);
 
@@ -59,8 +51,6 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
     }
     this.editMode = false;
     form.reset();
-    //this.shoppingListService.ingredientAdded.emit(newIngredient);
-    //this.ingredientAdded.emit(newIngredient);
   }
 
   onClear() {
