@@ -1,14 +1,23 @@
+
 <div class="row">
   <div class="col-xs-12">
+    <div *ngIf="recipes.length === 0; else recipeList">
+      <p>No recipes available. Please add a new recipe!</p>
+      <hr>
+    </div>
     <button class="btn btn-success" (click)="onNewRecipe()">New Recipe</button>
   </div>
 </div>
 <hr>
-<div class="row">
-  <div class="col-xs-12">
-    <recipe-item 
-      *ngFor="let recipeEl of recipes; let i = index"
-      [recipe]="recipeEl"
-      [index]="i"></recipe-item>
+
+<ng-template #recipeList>
+  <div class="row">
+    <div class="col-xs-12">
+      <recipe-item 
+        *ngFor="let recipeEl of recipes; let i = index"
+        [recipe]="recipeEl"
+        [index]="i"></recipe-item>
+    </div>
   </div>
-</div>
+</ng-template>
+
