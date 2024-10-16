@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+        <form class="p-2" (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email"
+                    ngModel
+                    required
+                    name="email"
+                    email
+                >
+            </div>
+            <small 
+                class="text-danger" 
+                style="display: block; margin-top: -16px"
+                *ngIf="!f.valid && f.touched"
+            >Please insert a valid email</small>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password"
+                    ngModel
+                    required
+                    name="password"
+                    minlength="6"
+                >
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">{{ inLoginMode ? "Login" : "Sign up" }}</button> | 
+            <button type="button" class="btn btn-secondary" (click)="onSwitchMode()">Switch to {{ inLoginMode ? "sign up" : "login" }}</button>
+        </form>
+    </div>
+</div>
