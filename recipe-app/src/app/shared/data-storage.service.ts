@@ -24,8 +24,11 @@ export class DataStorageService {
         return this.http
         .get<Recipe[]>('https://ng-course-recipe-book-a8fd0-default-rtdb.europe-west1.firebasedatabase.app/recipes.json')
         .pipe(
-            map(recipe => {
-                return recipe.map(recipe => {
+            map(recipes => {
+                if (!recipes) {
+                    return [];
+                }
+                return recipes.map(recipe => {
                     return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []}
                 });
             }),
