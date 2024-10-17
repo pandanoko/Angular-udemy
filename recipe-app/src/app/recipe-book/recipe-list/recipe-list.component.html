@@ -1,23 +1,25 @@
-
 <div class="row">
   <div class="col-xs-12">
-    <div *ngIf="recipes.length === 0; else recipeList">
+    <div *ngIf="isLoading">
+      <p>Loading...</p>
+    </div>
+    <div *ngIf="recipes.length === 0 && !isLoading; else recipeList">
       <p>No recipes available. Please add a new recipe!</p>
-      <hr>
+      <hr />
     </div>
     <button class="btn btn-success" (click)="onNewRecipe()">New Recipe</button>
   </div>
 </div>
-<hr>
+<hr />
 
 <ng-template #recipeList>
   <div class="row">
     <div class="col-xs-12">
-      <recipe-item 
+      <recipe-item
         *ngFor="let recipeEl of recipes; let i = index"
         [recipe]="recipeEl"
-        [index]="i"></recipe-item>
+        [index]="i"
+      ></recipe-item>
     </div>
   </div>
 </ng-template>
-
